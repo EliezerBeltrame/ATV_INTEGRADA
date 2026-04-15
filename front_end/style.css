@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #0f4c81, #0a2e5c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Fundo decorativo */
+.background-box {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+}
+
+/* Card */
+.login-container {
+    position: relative;
+    width: 320px;
+    padding: 30px;
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+
+    color: white;
+    text-align: center;
+}
+
+.login-container h2 {
+    margin: 15px 0;
+}
+
+.login-container label {
+    display: block;
+    text-align: left;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+
+    border-radius: 8px;
+    border: none;
+    outline: none;
+
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+.login-container input::placeholder {
+    color: #ddd;
+}
+
+/* Link */
+.forgot {
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #ccc;
+    text-decoration: none;
+}
+
+/* Botão */
+.login-container button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #0d3b66;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background: #0b2f52;
+}
+
+/* Social */
+.social {
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.icons div {
+    width: 60px;
+    height: 35px;
+    background: white;
+    border-radius: 8px;
+}
+
+/* Registro */
+.register {
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.register a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* base */
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.4;
+}
+
+/* formas individuais */
+.s1 {
+    width: 200px;
+    height: 200px;
+    background: #5ecbff;
+    top: 10%;
+    left: 20%;
+}
+
+.s2 {
+    width: 300px;
+    height: 300px;
+    background: #2b8cff;
+    bottom: 10%;
+    right: 15%;
+}
+
+.s3 {
+    width: 150px;
+    height: 150px;
+    background: #7fdfff;
+    bottom: 20%;
+    left: 10%;
+}
+
+.s4 {
+    width: 250px;
+    height: 250px;
+    background: #1e5fa3;
+    top: 20%;
+    right: 25%;
+}
+
+.shape {
+    animation: float 6s ease-in-out infinite alternate;
+} 
