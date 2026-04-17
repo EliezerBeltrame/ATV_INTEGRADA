@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Monitoramento</title>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container" id="container">
+
+  <!-- TELA 1 -->
+  <section class="home">
+
+    <button class="btn-start" onclick="irParaProxima()">
+      INICIAR
+    </button>
+
+  </section>
+
+  <!-- TELA 2 -->
+  <section class="dashboard">
+
+    <!-- CONTEÚDO -->
+    <div class="main">
+
+      <header>
+        <h1>Monitoramento Industrial</h1>
+        <button class="historico" onclick="abrirHistorico()">Histórico</button>
+        <button class="logout" onclick="logout()">Sair</button>
+      </header>
+
+      <div class="grid">
+
+        <div class="card">
+          🌡 Temperatura
+          <span id="temp">-- °C</span>
+        </div>
+
+        <div class="card">
+          💧 Umidade
+          <span id="umid">-- %</span>
+        </div>
+
+        <div class="grafico">
+          <h2>Leituras recentes</h2>
+          <canvas id="grafico"></canvas>
+        </div>
+
+        <div class="tabela" style="display: none;">
+          <table>
+            <tbody id="tabela"></tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="historico-panel" class="historico-panel"></div>
+
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
