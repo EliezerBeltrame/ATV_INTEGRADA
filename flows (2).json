@@ -1,0 +1,212 @@
+[
+    {
+        "id": "f4e3b3d2d9329082",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "fb47ce714f069aa9",
+        "type": "function",
+        "z": "f4e3b3d2d9329082",
+        "name": "function_gauge",
+        "func": "return [\n    { payload: msg.payload.temperatura },\n    { payload: msg.payload.umidade },\n    { payload: msg.payload }\n];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 380,
+        "wires": [
+            [
+                "b782fd3ff28c83ea"
+            ],
+            [
+                "d4bf02655d7067cc"
+            ],
+            [
+                "5523b593d3a59ff4"
+            ]
+        ]
+    },
+    {
+        "id": "f4c8055567fd48e5",
+        "type": "function",
+        "z": "f4e3b3d2d9329082",
+        "name": "function banco",
+        "func": "let t = Number(msg.payload.temperatura);\nlet u = Number(msg.payload.umidade);\n\nlet d = new Date().toISOString().slice(0, 19).replace(\"T\", \" \");\n\nmsg.topic = `INSERT INTO leituras (temperatura, umidade, data_hora)\nVALUES (${t}, ${u}, '${d}')`;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 460,
+        "wires": [
+            [
+                "34bdaa9092f0d37a"
+            ]
+        ]
+    },
+    {
+        "id": "b782fd3ff28c83ea",
+        "type": "ui_gauge",
+        "z": "f4e3b3d2d9329082",
+        "name": "",
+        "group": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value}} °C",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1310,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d4bf02655d7067cc",
+        "type": "ui_gauge",
+        "z": "f4e3b3d2d9329082",
+        "name": "",
+        "group": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Umidade",
+        "label": "units",
+        "format": "{{value}} %",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1300,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "3ed23e8c404f0d84",
+        "type": "serial in",
+        "z": "f4e3b3d2d9329082",
+        "name": "Gauge",
+        "serial": "c9921cb815111bc6",
+        "x": 610,
+        "y": 420,
+        "wires": [
+            [
+                "1c2e01fcf0d6b663"
+            ]
+        ]
+    },
+    {
+        "id": "34bdaa9092f0d37a",
+        "type": "mysql",
+        "z": "f4e3b3d2d9329082",
+        "mydb": "2a8bc6a460dc476e",
+        "name": "monitoramentoDados",
+        "x": 1340,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5523b593d3a59ff4",
+        "type": "debug",
+        "z": "f4e3b3d2d9329082",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "1c2e01fcf0d6b663",
+        "type": "json",
+        "z": "f4e3b3d2d9329082",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 750,
+        "y": 420,
+        "wires": [
+            [
+                "fb47ce714f069aa9",
+                "f4c8055567fd48e5"
+            ]
+        ]
+    },
+    {
+        "id": "c9921cb815111bc6",
+        "type": "serial-port",
+        "name": "",
+        "serialport": "COM3",
+        "serialbaud": "115200",
+        "databits": 8,
+        "parity": "none",
+        "stopbits": 1,
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "string",
+        "responsetimeout": 10000
+    },
+    {
+        "id": "2a8bc6a460dc476e",
+        "type": "MySQLdatabase",
+        "name": "Monitoramento de Dados",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "monitoramentoDados",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "980a8e496b264882",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6",
+            "node-red-node-serialport": "2.0.3",
+            "node-red-node-mysql": "3.0.0"
+        }
+    }
+]
